@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'foodiesapp',
     'order',
     'payment',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +78,17 @@ WSGI_APPLICATION = 'restaurant.wsgi.application'
 CSRF_TRUSTED_ORIGINS = [
     "https://*.onrender.com"
 ]
+
+import cloudinary
+
+cloudinary.config(
+    cloud_name = "dwmalat7n",
+    api_key = "263123915214169",
+    api_secret = "xx_X9fAndZ46ZSM_Sv9MSOFRhjU",
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 
 # Database
@@ -132,15 +145,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = ...
 
 PAYSTACK_PUBLIC_KEY = 'pk_test_74fef657f46c062f0c83e56cfc72653a3ab43643'
 PAYSTACK_SECRET_KEY = 'sk_test_b0fa8219212058a3bbb2c829d3acb83d3b944962'
 
 
-from django.contrib.auth import get_user_model
 
-User = get_user_model()
-
-if not User.objects.filter(username="admin").exists():
-    User.objects.create_superuser("admin", "admin@email.com", "admin123")

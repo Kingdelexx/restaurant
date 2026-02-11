@@ -141,3 +141,23 @@ def checkout(request):
     # request.session.modified = True
     # messages.success(request, "Checkout successful! Thank you for your order.")
     # return redirect('index')
+
+
+def create_food_item(request):
+    if request.method == 'POST':
+        form = CreateFoodItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            category_name = form.cleaned_data['category']
+            category, created = Category.objects.get_or_create(name=category_name)
+            FoodItem.objects.create(
+                category=category,
+                name=form.cleaned_data['name'],
+                description=form.cleaned_data['description'],
+                price=form.cleaned_data['price'],
+                image=form.cleaned_data['image']
+            )
+            messages.success(request, "Food item created successfully.")
+            return redirect('index')
+    else:
+        form = CreateFoodItemForm()
+    return render(request, 'create_food_item.html', {'form': form})

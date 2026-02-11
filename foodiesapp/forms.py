@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile
+from .models import *
 from django.contrib.auth.models import User
 
 
@@ -33,3 +33,8 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['username', 'email']
 
 
+class CreateFoodItemForm(forms.ModelForm):
+    
+    class Meta:
+        model = FoodItem
+        fields = ['category', 'name', 'description', 'price', 'image']
