@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Meal Categories{% endblock %}
+
+{% block content %}
+
+<header class="hero">
+    <h2>Explore Our Categories</h2>
+    <p>Discover meals crafted with passion and flavor.</p>
+  </header>
+
+  <main class="category-container">
+    {% for category in categories %}
+    <div class="category-card">
+      <h3>{{ category.name }}</h3>
+      <p>{{ category.description }}</p>
+      <span class="date">Updated on: {{ category.created_at }}</span>
+      <a href="{% url 'food_item' category.id %}" class="btn">View Items</a>
+
+    </div>
+    {% endfor %}
+  </main>
+
+{% endblock %}

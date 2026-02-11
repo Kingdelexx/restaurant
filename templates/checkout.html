@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="checkout-container">
+        <h2>Checkout</h2>
+        <form method="post" action="{% url 'create_order' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+    </div>
+
+    <div class="order-summary">
+        <h2>Order Summary</h2>
+        <ul>
+            {% for item in cart_items %}
+            <li>{{ item.food_item.name }} - Quantity: {{ item.quantity }} - Price: ${{ item.food_item.price|floatformat:2 }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Total: ${{ total|floatformat:2 }}</h3>
+
+    </div>
+
+
+
+
+    {% endblock %}

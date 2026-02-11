@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="failed-container">
+
+        <lord-icon
+            src="https://cdn.lordicon.com/tdrtiskw.json"
+            trigger="loop"
+            colors="primary:#121331,secondary:#c0392b"
+            style="width:150px;height:150px">
+        </lord-icon>
+
+        <h2>Payment Failed!</h2>
+
+        <p>Your payment could not be processed at this time.</p>
+
+        <a href="{% url 'checkout' %}" class="btn btn-primary">Try Again</a>
+        <a href="{% url 'index' %}" class="btn btn-primary">Return to Home</a>
+    </div>
+
+{% endblock %}
