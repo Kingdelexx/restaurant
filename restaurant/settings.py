@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
+
+import cloudinary # pyright: ignore[reportMissingImports]
 import os
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,7 +82,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.onrender.com"
 ]
 
-import cloudinary
+
 
 cloudinary.config(
     cloud_name = "dwmalat7n",
