@@ -158,3 +158,9 @@ PAYSTACK_SECRET_KEY = 'sk_test_b0fa8219212058a3bbb2c829d3acb83d3b944962'
 
 
 
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+if not User.objects.filter(username="admin").exists():
+    User.objects.create_superuser("admin", "admin@email.com", "admin123")
